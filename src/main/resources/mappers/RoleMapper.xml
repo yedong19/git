@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanxin.dao.RoleDao">
+
+    <select id="selectPassByName" parameterType="java.lang.String" resultType="java.lang.String">
+        select pass from user where name=#{name}
+    </select>
+
+    <select id="roles" parameterType="java.lang.String" resultType="java.lang.String">
+        select qr.roleName from qx_role qr,user u,qx_role_user qu where u.uid=qu.eid and qr.oid=qu.roleid and u.name=#{name}
+    </select>
+
+    <select id="functions" parameterType="java.lang.String" resultType="java.lang.String">
+        select f.functionName from qx_function f,user u,qx_role_function qr,qx_role_user qu where u.uid=qu.eid and qu.roleid=qr.roleid and qr.functionid=f.oid and u.name=#{name}
+    </select>
+</mapper>
